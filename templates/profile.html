@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}My Profile{% endblock %}
+
+{% block body %}
+<h1>My Profile</h1>
+    <p>{{ user.email }}</p>
+
+    <p>My Gardens:</p>
+
+<ul>
+    {% for garden in user.gardens %}
+    <li>
+        <p>{{garden.title}}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<h2>Create New Garden</h2>
+  <form action="/new-garden" method="POST">
+    <p>
+      Title: <input type="text" name="garden_title">
+    </p>
+
+    <p>
+      Description: <input type="text" name="garden_description">
+    </p>
+
+    <p>
+      <input type="submit" value="Create">
+    </p>
+  </form>
+
+{% endblock body%}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}All Gardens{% endblock %}
+
+{% block body %}
+<ul>
+    {% for garden in gardens %}
+    <li>
+        <a href = "/gardens/{{ garden.garden_id}}">{{ garden.title }}</a>
+        <p>{{garden.description}}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock body%}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block garden %}{{ garden.title }} - Details{% endblock %}
+
+{% block body %}
+<h1>{{ garden.title }}</h1>
+
+<p>
+  Creator: {{ garden.creator.email }}
+
+  <!--  -->
+  {% for plant in garden.garden_plants %}
+    Plants: {{ plant.plant.name }}
+  <!--  -->
+
+  {% endfor %}
+
+</p>
+
+{% endblock %}

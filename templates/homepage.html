@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Gardens Home{% endblock %}
+
+{% block body %}
+  <h1>Welcome to gardening app!</h1>
+
+  <h2>Navigation</h2>
+  <ul>
+    <li><a href="/plants">View all plants</a></li>
+    <li><a href="/profile">Your Profile</a></li>
+    <li><a href="/gardens">Other's Gardens</a></li>
+  </ul>
+
+  <h2>Create an Account</h2>
+  <form action="/users" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
+  <h2>Log In</h2>
+  <form action="/login" method="POST">
+    <p>
+      Email <input type="text" name="email">
+    </p>
+
+    <p>
+      Password <input type="password" name="password">
+    </p>
+
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
+  <h2>Log Out</h2>
+  <form action="/logout" method="POST">
+    <p>
+      Click here to log out: <input type="submit">
+    </p>
+
+
+  </form>
+{% endblock %}
