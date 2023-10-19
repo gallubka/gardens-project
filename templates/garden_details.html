@@ -5,16 +5,19 @@
 {% block body %}
 <h1>{{ garden.title }}</h1>
 
+<p>Creator: {{ garden.creator.email }}</p>
+<br>
 <p>
-  Creator: {{ garden.creator.email }}
-
-  <!--  -->
+  Plants: 
   {% for plant in garden.garden_plants %}
-    Plants: {{ plant.plant.name }}
-  <!--  -->
 
+   {{ plant.plant.name }}, 
   {% endfor %}
-
 </p>
 
+{% if garden.creator == "user_id" %}
+    <p>edit plants</p>
+{% endif %}
+
 {% endblock %}
+

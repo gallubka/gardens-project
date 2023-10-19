@@ -82,7 +82,22 @@ def plants():
 def plant_details(plant_id):
     """Show details of a plant."""
     plant = crud.get_plant_by_id(plant_id)
-    return render_template("plant_details.html", plant=plant)
+    gardens = crud.get_my_gardens(session['user'])
+
+    return render_template("plant_details.html", plant=plant, gardens=gardens)
+
+
+@app.route('/add-plant-to-garden', methods=['POST'])
+def add_plant_to_garden():
+    plant_id = request.form.get('plant_id')
+    garden = request.form.get('which-garden')
+   
+    db.session.add(crud.create_garden_plant(garden, plant_id))
+    db.session.commit()
+
+    flash('Plant added to garden.')
+    return redirect(f'/plants/{plant_id}')
+
 
 
 @app.route('/gardens')
@@ -97,16 +112,17 @@ def gardens():
 def garden_details(garden_id):
     """show details of a garden"""
     garden = crud.get_garden_by_id(garden_id)
-    return render_template("garden_details.html", garden=garden)
+    user_id = session['user']
+
+    return render_template("garden_details.html", garden=garden, user_id=user_id)
 
 
 @app.route('/new-garden', methods=['POST'])
 def create_new_garden():
     title = request.form.get('garden_title')
     description = request.form.get('garden_description')
-    user_id = crud.get_user_by_id(session['user'])
 
-    db.session.add(crud.create_garden(title, description, user_id))
+    db.session.add(crud.create_garden(title, description, session['user']))
     db.session.commit()
 
     flash('garden successfully created.')

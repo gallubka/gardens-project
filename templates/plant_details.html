@@ -13,4 +13,17 @@
 
 </p>
 
+<h2>Add to a Garden</h2>
+<form action="/add-plant-to-garden" method="POST">
+  <select name="which-garden" id="which-garden">
+    {% for garden in gardens%}
+    <option value={{garden.garden_id}}>{{garden.title}}</option>
+    {% endfor %}
+  </select>
+  <input type="hidden" name="plant_id" value='{{plant.plant_id}}'>
+  <input type="submit" value="Add">
+
+</form>
+
+
 {% endblock %}

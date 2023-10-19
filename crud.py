@@ -31,6 +31,9 @@ def create_place(country, region):
 def get_gardens():
     return Garden.query.all()
 
+def get_my_gardens(user_id):
+    return Garden.query.filter(user_id == Garden.creator_id).all()
+
 def all_users():
     return User.query.all()
 

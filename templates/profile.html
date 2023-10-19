@@ -10,7 +10,9 @@
 <ul>
     {% for garden in user.gardens %}
     <li>
-        <p>{{garden.title}}</p>
+      <a href = "/gardens/{{ garden.garden_id}}">
+        <button>{{ garden.title }}</button>
+      </a>
     </li>
     {% endfor %}
 </ul>
