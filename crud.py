@@ -53,6 +53,9 @@ def get_plant_by_id(plant_id):
 def get_place_by_id(place_id):
     return Places.query.get(place_id)
 
+def get_garden_plant_by_id(garden_plant_id):
+    return GardenPlants.query.get(garden_plant_id)
+
 def create_garden(title, description, user_id):
     """Create and return a garden"""
     garden = Garden(title=title, description=description, creator_id=user_id)

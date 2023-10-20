@@ -112,9 +112,8 @@ def gardens():
 def garden_details(garden_id):
     """show details of a garden"""
     garden = crud.get_garden_by_id(garden_id)
-    user_id = session['user']
 
-    return render_template("garden_details.html", garden=garden, user_id=user_id)
+    return render_template("garden_details.html", garden=garden)
 
 
 @app.route('/new-garden', methods=['POST'])
@@ -129,6 +128,16 @@ def create_new_garden():
     
     return redirect('/profile')
 
+@app.route('/remove-plant-from-garden', methods=['POST'])
+def remove_plant_from_garden():
+    garden_id = request.form.get('garden_to_remove_from')
+    garden_plant_id = request.form.get('remove-plant')
+    garden_plant = crud.get_garden_plant_by_id(garden_plant_id)
+
+    db.session.delete(garden_plant)
+    db.session.commit()
+
+    return redirect(f'/gardens/{garden_id}')
 
 
 

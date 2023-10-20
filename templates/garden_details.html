@@ -15,8 +15,19 @@
   {% endfor %}
 </p>
 
-{% if garden.creator == "user_id" %}
+{% if garden.creator_id == session['user'] %}
     <p>edit plants</p>
+
+    <form action="/remove-plant-from-garden" method="POST">
+      <select name="remove-plant" id="remove-plant">
+        {% for garden_plant in garden.garden_plants%}
+        <option value={{garden_plant.garden_plant_id}}>{{garden_plant.plant.name}}</option>
+        {% endfor %}
+      </select>
+      <input type="hidden" name="garden_to_remove_from" value='{{garden.garden_id}}'>
+      <input type="submit" value="Remove">
+    
+    </form>
 {% endif %}
 
 {% endblock %}
