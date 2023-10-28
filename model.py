@@ -34,11 +34,13 @@ class Plant(db.Model):
 
     name = db.Column(db.String)
 
-    humidity_preference = db.Column(db.Integer) #scale of 1 to 10
+    watering = db.Column(db.String) 
 
-    light_preference = db.Column(db.Integer)
+    image = db.Column(db.String)
 
-    temperature_preference = db.Column(db.String) #F, 10-20, 20-30
+    thumbnail = db.Column(db.String)
+
+    light_preference = db.Column(db.String)
 
     plant_type = db.Column(db.String)
 

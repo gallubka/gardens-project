@@ -2,9 +2,31 @@
 {% block title %}All Plants{% endblock %}
 
 {% block body %}
+
+<div>
+    <h1>search</h1>
+    <form action="/search_plants">
+        <input type="text" name="search_plant">
+        <input type="submit" value="Search!">
+    </form>
+
+    <h1>filter</h1>
+    <form action="/filter">
+        <p>Watering</p>
+        <p>Sunlight</p>
+        <p>Cycle</p>
+        <p></p>
+
+    </form>
+
+</div>
+
+
+
 <ul>
     {% for plant in plants %}
     <li>
+        <img src="{{ plant.thumbnail }}" alt="">
         <a href = "/plants/{{ plant.plant_id}}">{{ plant.name }}</a>
     </li>
     {% endfor %}

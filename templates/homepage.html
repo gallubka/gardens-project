@@ -11,6 +11,8 @@
     <li><a href="/gardens">Discover Gardens</a></li>
   </ul>
 
+  {% if 'user' not in session %}
+
   <h2>Create an Account</h2>
   <form action="/users" method="POST">
     <p>
@@ -25,6 +27,7 @@
       <input type="submit" value="Create">
     </p>
   </form>
+
 
   <h2>Log In</h2>
   <form action="/login" method="POST">
@@ -41,12 +44,17 @@
     </p>
   </form>
 
+ 
+{% else %}
+  
+
   <h2>Log Out</h2>
   <form action="/logout" method="POST">
     <p>
       Click here to log out: <input type="submit" value="Log Out">
     </p>
 
-
   </form>
+
+  {% endif %}
 {% endblock %}

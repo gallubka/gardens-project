@@ -6,10 +6,13 @@
 <h1>{{ plant.name }}</h1>
 
 <p>
-  Type: {{ plant.plant_type }}
-  Humidity preference: {{ plant.humidity_preference }}
+  Cycle: {{ plant.plant_type }}
+  <br>
+  Watering: {{ plant.watering }}
+  <br>
   Light preference: {{ plant.light_preference }}
-  Temperature preference: {{ plant.temperature_preference }}
+  <br>
+  <img src="{{ plant.image }}" alt="picture of plant">
 
 </p>
 

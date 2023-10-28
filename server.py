@@ -5,6 +5,7 @@ from flask import (Flask, render_template, request, flash, session,
 from jinja2 import StrictUndefined
 from model import connect_to_db, db
 import crud
+import requests
 
 
 app = Flask(__name__)
@@ -15,6 +16,9 @@ app.jinja_env.undefined = StrictUndefined
 # Replace this with routes and view functions!
 @app.route('/')
 def homepage():
+    if 'user' not in session:
+        session['logged_in'] = False
+    print(f'homepage, THIS IS SESSION LOGGED IN : {session["logged_in"]}')
     return render_template('homepage.html')
 
 @app.route('/users', methods=['POST'])
@@ -33,7 +37,6 @@ def register_user():
     return redirect('/')
 
 
-
 @app.route('/login', methods=['POST'])
 def login():
     email = request.form.get('email')
@@ -42,6 +45,8 @@ def login():
     if user:
         if password == user.password:
             session['user'] = user.user_id
+            session['logged_in'] = True
+            print(f'login, THIS IS SESSION LOGGED IN : {session["logged_in"]}')
             flash('Logged in!')
             return redirect('/')
         else: 
@@ -50,6 +55,7 @@ def login():
     else:
         flash('There is no user with this email. Please try again or register.')
         return redirect('/')
+    
     
 @app.route('/logout', methods=['POST'])
 def logout():
@@ -97,7 +103,7 @@ def add_plant_to_garden():
 
     flash('Plant added to garden.')
     return redirect(f'/plants/{plant_id}')
-
+    #save plant to database
 
 
 @app.route('/gardens')
@@ -121,6 +127,7 @@ def create_new_garden():
     title = request.form.get('garden_title')
     description = request.form.get('garden_description')
 
+
     db.session.add(crud.create_garden(title, description, session['user']))
     db.session.commit()
 
@@ -138,6 +145,56 @@ def remove_plant_from_garden():
     db.session.commit()
 
     return redirect(f'/gardens/{garden_id}')
+
+
+@app.route('/remove-garden', methods=['POST'])
+def remove_garden():
+    garden_id = request.form.get('garden_to_remove')
+    garden = crud.get_garden_by_id(garden_id)
+
+    db.session.delete(garden)
+    db.session.commit()
+
+    flash('Garden successfully deleted!')
+    return redirect('/profile')
+
+
+@app.route('/search_plants', methods=['GET'])
+def search_plants():
+    search_param = request.args.get('search_plant')
+    base_url = 'https://perenual.com/api/species-list?key=sk-HbCe6538426d9ecb42677'
+    response2 = requests.get(base_url + f'&q={search_param}')
+    plants_result = response2.json()
+
+    our_plants = []
+
+    for plant in plants_result['data']:
+        plant_in_database =  crud.get_plant_by_name(plant['common_name'])
+        if plant_in_database is not None:
+            our_plants.append(plant_in_database)
+        else:
+            plant_name = plant['common_name']
+            watering = plant['watering']
+            sunlight = plant['sunlight'][0]
+            cycle = plant['cycle']
+
+            if plant['default_image']:
+                image = plant['default_image'].get('original_url', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+                thumbnail = plant['default_image'].get('thumbnail', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+            else:
+                image = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
+                thumbnail = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
+            new_plant = crud.create_plant(plant_name, watering, sunlight, image, thumbnail, cycle)
+            db.session.add(new_plant)
+            db.session.commit()
+            our_plants.append(new_plant)
+
+    set_plants = set(our_plants)
+    list_our_plants = list(set_plants)
+    
+    return render_template('search-results.html', our_plants=list_our_plants)
+
+
 
 
 

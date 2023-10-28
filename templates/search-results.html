@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}All Plants{% endblock %}
+
+{% block body %}
+
+<h1>hi!</h1>
+<ul>
+    {% for plant in our_plants %}
+    <li>
+        <img src="{{ plant.thumbnail }}" alt="">
+        <a href = "/plants/{{ plant.plant_id}}">{{ plant.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock body%}

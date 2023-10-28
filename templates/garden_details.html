@@ -4,6 +4,7 @@
 
 {% block body %}
 <h1>{{ garden.title }}</h1>
+<p>{{ garden.description}}</p>
 
 <p>Creator: {{ garden.creator.email }}</p>
 <br>
@@ -28,6 +29,20 @@
       <input type="submit" value="Remove">
     
     </form>
+
+    <br>
+
+
+    <form action="/remove-garden" method="POST">
+      <label for="remove-garden">Delete Garden?</label>
+      <br>
+      <input type="checkbox" name="remove" value="standard" id="remove-garden">
+      <input type="hidden" name="garden_to_remove" value='{{garden.garden_id}}'>
+      <input type="submit" value="Yes, delete garden." >
+      
+    </form>
+
+
 {% endif %}
 
 {% endblock %}

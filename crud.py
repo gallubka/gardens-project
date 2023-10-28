@@ -11,12 +11,13 @@ def create_user(email, password):
     return user
 
 
-def create_plant(name, humidity_preference, light_preference, temperature_preference, plant_type):
+def create_plant(name, watering, light_preference, image, thumbnail, plant_type):
     """create and return a plant"""
     plant = Plant(name=name, 
-                  humidity_preference=humidity_preference,
+                  watering=watering,
                   light_preference=light_preference,
-                  temperature_preference=temperature_preference,
+                  image=image,
+                  thumbnail=thumbnail,
                   plant_type=plant_type)
     return plant
 
@@ -74,6 +75,9 @@ def create_garden_plant(garden_id, plant_id):
     gardenplant = GardenPlants(garden_id=garden_id, plant_id=plant_id)
     return gardenplant
 
+
+def get_plant_by_name(plant_name): 
+    return Plant.query.filter_by(name = plant_name).first()
 
 
 if __name__ == '__main__':

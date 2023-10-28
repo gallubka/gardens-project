@@ -2,6 +2,7 @@ import os
 from random import choice, randint
 from datetime import datetime
 
+import requests
 import crud
 import model
 import server
@@ -19,16 +20,27 @@ for n in range(10):
     new_user = crud.create_user(email, password)
     model.db.session.add(new_user)
 
+response = requests.get("https://perenual.com/api/species-list?key=sk-HbCe6538426d9ecb42677")
+thirty_plants = response.json()
 
-for n in range(10):
-    name = f'plant{n}'
-    humidity_preference = n
-    light_preference = n
-    temperature_preference = "10-20 C"
-    plant_type = "vegetable"
+for plant in thirty_plants['data']:
+    plant_name = plant['common_name']
+    watering = plant['watering']
+    sunlight = plant['sunlight'][0]
+    cycle = plant['cycle']
+    if plant['default_image']:
+        image = plant['default_image'].get('original_url', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+        thumbnail = plant['default_image'].get('thumbnail', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+    else:
+        image = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
+        thumbnail = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
 
-    new_plant = crud.create_plant(name, humidity_preference, light_preference, temperature_preference, plant_type)
+    new_plant = crud.create_plant(plant_name, watering, sunlight, image, thumbnail, cycle)
     model.db.session.add(new_plant)
+
+model.db.session.commit()
+
+
 
 for n in range(10):
     country = f"France{n}"
