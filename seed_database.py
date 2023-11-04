@@ -11,13 +11,15 @@ os.system("dropdb gardens")
 os.system("createdb gardens")
 
 model.connect_to_db(server.app)
+server.app.app_context().push()
 model.db.create_all()
 
 for n in range(10):
-    email = f'user{n}@test.com'  # Voila! A unique email!
+    email = f'user{n}@test.com'  
+    username = f'user{n}'
     password = 'test'
 
-    new_user = crud.create_user(email, password)
+    new_user = crud.create_user(email, username, password)
     model.db.session.add(new_user)
 
 response = requests.get("https://perenual.com/api/species-list?key=sk-HbCe6538426d9ecb42677")

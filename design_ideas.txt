@@ -1,0 +1,15 @@
+color palette: 
+    -dark green : 536F05
+    -medium green : 919B3A
+    -beige : 
+    -ligth blue : CACECF
+    -orange : D39C5A
+    -yellow : EAAF06
+
+
+
+possible images to use: 
+    https://unsplash.com/photos/water-drop-on-green-plant-_6rR_iP06p4
+    https://unsplash.com/photos/purple-flower-bloom-during-daytime-vnd50_tpkqg
+    https://unsplash.com/photos/brown-wooden-bench-near-green-trees-during-daytime-L67hgvTOYT0
+    https://unsplash.com/photos/green-grass-field-with-pink-flowers-6GBBch49j7M

@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(246, 229, 229);
+}
+
+h1 {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #919B3A;
+    font-weight: lighter;
+    font-size: 400%;
+}
+
+p {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #919B3A;
+}
+
+h2 {
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #536F05;
+    font-weight: lighter;
+    font-size: 170%;
+}
+
+li {
+    color: #6D3952;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+.flash-msg {
+    color:#6D3952;
+    background-color: #CACECF;
+}
+
+/* .navigation {
+
+} */
+
+/* #update_username {
+    /* display : none; 
+}*/

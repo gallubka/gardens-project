@@ -2,59 +2,69 @@
 {% block title %}Gardens Home{% endblock %}
 
 {% block body %}
-  <h1>Welcome to gardening app!</h1>
-
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/profile">Your Profile</a></li>
-    <li><a href="/plants">View all plants</a></li>
-    <li><a href="/gardens">Discover Gardens</a></li>
-  </ul>
-
-  {% if 'user' not in session %}
-
-  <h2>Create an Account</h2>
-  <form action="/users" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
-
-    <p>
-      Password <input type="password" name="password">
-    </p>
-
-    <p>
-      <input type="submit" value="Create">
-    </p>
-  </form>
 
 
-  <h2>Log In</h2>
-  <form action="/login" method="POST">
-    <p>
-      Email <input type="text" name="email">
-    </p>
+    <h1>Welcome to gardening app!</h1>
+    <nav class="navigation">
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="/profile">Your Profile</a></li>
+        <li><a href="/plants">View all plants</a></li>
+        <li><a href="/gardens">Discover Gardens</a></li>
+      </ul>
+    </nav>
 
-    <p>
-      Password <input type="password" name="password">
-    </p>
 
-    <p>
-      <input type="submit" value="Log In">
-    </p>
-  </form>
+    {% if 'user' not in session %}
 
- 
-{% else %}
+    <h2>Create an Account</h2>
+    <form action="/users" method="POST">
+      <p>
+        Email <input type="text" name="email">
+      </p>
+
+      <p>
+        Username <input type="text" name="username">
+      </p>
+
+      <p>
+        Password <input type="password" name="password">
+      </p>
+
+      <p>
+        <input type="submit" value="Create">
+      </p>
+    </form>
+
+
+    <h2>Log In</h2>
+    <form action="/login" method="POST">
+      <p>
+        Email <input type="text" name="email">
+      </p>
+
+      <p>
+        Password <input type="password" name="password">
+      </p>
+
+      <p>
+        <input type="submit" value="Log In">
+      </p>
+    </form>
+
   
+  {% else %}
+    
 
-  <h2>Log Out</h2>
-  <form action="/logout" method="POST">
-    <p>
-      Click here to log out: <input type="submit" value="Log Out">
-    </p>
+    <h2>Log Out</h2>
+    <form action="/logout" method="POST">
+      <p>
+        Click here to log out: <input type="submit" value="Log Out">
+      </p>
 
-  </form>
+    </form>
+
+
 
   {% endif %}
 {% endblock %}

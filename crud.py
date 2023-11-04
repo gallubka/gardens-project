@@ -4,10 +4,10 @@ from model import db, User, Garden, Plant, GardenPlants, NativeTo, Places, conne
 
 
 # Functions start here!
-def create_user(email, password):
+def create_user(email, username, password):
     """Create and return a new user."""
 
-    user = User(email=email, password=password)
+    user = User(email=email, username=username, password=password)
     return user
 
 
@@ -42,7 +42,7 @@ def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 def get_user_by_email(email):
-    user = User.query.filter(email == User.email).first()
+    user = User.query.filter(User.email == email).first()
     return user
 
 def get_garden_by_id(garden_id):

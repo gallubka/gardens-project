@@ -1,7 +1,7 @@
 """Server for movie ratings app."""
 
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   redirect, jsonify)
 from jinja2 import StrictUndefined
 from model import connect_to_db, db
 import crud
@@ -25,14 +25,17 @@ def homepage():
 def register_user():
     '''registers a user'''
     email = request.form.get('email')
+    username = request.form.get('username')
     password = request.form.get('password')
     user = crud.get_user_by_email(email)
     if user:
         flash('A user with that email already exists. Please log in or try a different email.')
-    else:
-        db.session.add(crud.create_user(email, password))
+    elif email and password:
+        db.session.add(crud.create_user(email, username, password))
         db.session.commit()
         flash('Your account was created. Please log in.')
+    else: 
+        flash('Please enter an email and a password to create an account.')
 
     return redirect('/')
 
@@ -195,11 +198,24 @@ def search_plants():
     return render_template('search-results.html', our_plants=list_our_plants)
 
 
+@app.route('/change_username', methods=['POST'])
+def change_username():
+    new_username = request.json.get('new_username')
+    user_id = request.json.get('user_id')
+   
+    user = crud.get_user_by_id(int(user_id))
+
+    user.username = new_username
+    
+    db.session.commit()
+   
+    return jsonify({'msg': 'Successfully changed!', 'newname': new_username})
 
 
 
 if __name__ == '__main__':
     connect_to_db(app)
+    app.app_context().push()
     app.run(host='0.0.0.0', debug=True)
 
 
