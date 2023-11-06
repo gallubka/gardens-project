@@ -5,18 +5,11 @@
 
 
     <h1>Welcome to gardening app!</h1>
-    <nav class="navigation">
-      <h2>Navigation</h2>
-      <ul>
-        <li><a href="/profile">Your Profile</a></li>
-        <li><a href="/plants">View all plants</a></li>
-        <li><a href="/gardens">Discover Gardens</a></li>
-      </ul>
-    </nav>
 
 
     {% if 'user' not in session %}
-
+<div class="forms">
+  <div class="form-section">
     <h2>Create an Account</h2>
     <form action="/users" method="POST">
       <p>
@@ -35,8 +28,9 @@
         <input type="submit" value="Create">
       </p>
     </form>
+  </div>
 
-
+  <div class="form-section">
     <h2>Log In</h2>
     <form action="/login" method="POST">
       <p>
@@ -51,11 +45,13 @@
         <input type="submit" value="Log In">
       </p>
     </form>
-
+  </div>
+</div>
   
   {% else %}
-    
 
+<div class="forms">
+  <div class="form-section">
     <h2>Log Out</h2>
     <form action="/logout" method="POST">
       <p>
@@ -63,6 +59,9 @@
       </p>
 
     </form>
+  </div>
+</div>
+
 
 
 

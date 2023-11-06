@@ -3,14 +3,20 @@
 
 {% block body %}
 
-<h1>hi!</h1>
-<ul>
-    {% for plant in our_plants %}
-    <li>
-        <img src="{{ plant.thumbnail }}" alt="">
-        <a href = "/plants/{{ plant.plant_id}}">{{ plant.name }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<h1>heres your results!</h1>
+
+<div class="card-columns">
+    <ul class="col">
+        {% for plant in our_plants %}
+        <li class="card">
+            <img src="{{ plant.image }}" class="card-img-top" alt="">
+            <div>
+                <h5 class="card-title">{{ plant.name }}</h5>
+                <a class="btn btn-primary" href = "/plants/{{ plant.plant_id}}">Visit Plant</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock body%}

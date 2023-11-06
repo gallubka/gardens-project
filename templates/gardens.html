@@ -2,13 +2,30 @@
 {% block title %}All Gardens{% endblock %}
 
 {% block body %}
-<ul>
+<div class="card-columns">
+    <ul class="col">
     {% for garden in gardens %}
-    <li>
-        <a href = "/gardens/{{ garden.garden_id}}">{{ garden.title }}</a>
-        <p>{{garden.description}}</p>
+
+    <li class="card" >
+
+        {% for gardenplant in garden.garden_plants[:1] %}
+            {% if gardenplant %}
+            <img src="{{ gardenplant.plant.thumbnail }} " class="card-img-top" alt="">
+            {% else %}
+            <img src="/static/sample_garden_image.jpg" class="card-img-top" alt="">
+            {% endif%}
+        {% endfor %}
+        <div class="card-body" >
+            <h5 class="card-title">{{ garden.title }}</h5>
+            <p class="card-text">{{garden.description}}</p>
+            <a class="btn btn-primary" href= "/gardens/{{ garden.garden_id}}">Visit Garden</a>
+        </div>
     </li>
     {% endfor %}
-</ul>
+    
+
+    </ul>
+</div>
+
 
 {% endblock body%}

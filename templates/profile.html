@@ -2,43 +2,60 @@
 {% block title %}My Profile{% endblock %}
 
 {% block body %}
-<h1>My Profile</h1>
-    <p id="username">{{ user.username }}</p>
-    <p>change user name here </p>
-    <form id="update_username">
-      <input type="text" id="new_username">
-      <input type="hidden" id="user_id" value="{{ user.user_id }}">
-      <input type="submit" value="Change username">
-    </form>
+<main class="col-lg-8 mx-auto p-4 py-md-5">
 
-    <p>My Gardens:</p>
+  <h1>My Profile</h1>
 
-<ul>
-    {% for garden in user.gardens %}
-    <li>
-      <a href = "/gardens/{{ garden.garden_id}}">
-        <button>{{ garden.title }}</button>
-      </a>
-    </li>
-    {% endfor %}
-</ul>
+  <div class="col-sm-12 text-center username-section">
+    <div class="change-username ">
+      <p id="username">{{ user.username }}</p>
+      <!-- <p>change user name here </p> -->
+      <button id="change_username">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#919B3A" class="bi bi-pencil-square" viewBox="0 0 16 16">
+          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>
+      </button>
+    </div>
+      <form id="update_username">
+        <input type="text" id="new_username" >
+        <input type="hidden" id="user_id" value="{{ user.user_id }}">
+        <input type="submit" value="Ok!" class="submit-btn" type="button">
+      </form>
+  </div>
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <h2>My Gardens:</h2>
+
+  <ul class="list-unstyled ps-0 ">
+      {% for garden in user.gardens %}
+      <li>
+        <a href = "/gardens/{{ garden.garden_id}}" class="mb-1">
+          <button type="button" class="btn btn-outline-primary btn-in-list" >{{ garden.title }}</button>
+        </a>
+      </li>
+      {% endfor %}
+  </ul>
+  </div>
 
 
-<h2>Create New Garden</h2>
-  <form action="/new-garden" method="POST">
-    <p>
-      Title: <input type="text" name="garden_title">
-    </p>
+  <div class="col-md-6">
 
-    <p>
-      Description: <input type="text" name="garden_description">
-    </p>
+    <h2>Create New Garden</h2>
+      <form action="/new-garden" method="POST">
+        <p>Title: <input type="text" name="garden_title"></p>
+        <p>Description: <input type="text" name="garden_description"></p>
+        <p><input type="submit" class="submit-btn" value="Create"></p>
+      </form>
+  </div>
 
-    <p>
-      <input type="submit" value="Create">
-    </p>
-  </form>
+  </div>
 
-  <script src="/static/name_changer.js"></script>
+
+    <script src="/static/name_changer.js"></script>
+    
+
+  </main>
 
 {% endblock body%}
