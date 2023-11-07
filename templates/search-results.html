@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
-{% block title %}All Plants{% endblock %}
+{% block title %}Search Results{% endblock %}
 
 {% block body %}
 
-<h1>heres your results!</h1>
+<h1>Here's Your Results!</h1>
 
-<div class="card-columns">
+<div class="card-deck">
     <ul class="col">
         {% for plant in our_plants %}
         <li class="card">
-            <img src="{{ plant.image }}" class="card-img-top" alt="">
-            <div>
+            <div class="card-img">
+                <img src="{{ plant.image }}" class="card-img-top" alt="">
+            </div>  
+            <div class="card-body">
                 <h5 class="card-title">{{ plant.name }}</h5>
                 <a class="btn btn-primary" href = "/plants/{{ plant.plant_id}}">Visit Plant</a>
             </div>

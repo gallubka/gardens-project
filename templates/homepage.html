@@ -5,45 +5,50 @@
 <div class="homepage-body">
 
 
-    <h1>Welcome to gardening planner!</h1>
+    <h1>Welcome to Garden Planner!</h1>
 
 
     {% if 'user' not in session %}
-<div class="forms">
-  <div class="form-section">
+<div class="row homepage-forms">
+  <div class="col-md-4  homepage-form-section">
     <h2>Create an Account</h2>
     <form action="/users" method="POST">
-      <p>
-        Email <input type="text" name="email">
-      </p>
 
-      <p>
-        Username <input type="text" name="username">
-      </p>
+      <div class="form-group">
+        <label for="garden_title">Email:</label>
+          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your name">
+      </div>
 
-      <p>
-        Password <input type="password" name="password">
-      </p>
+      <div class="form-group">
+        <label for="username">Username:</label>
+          <input class="form-control" id="username" type="text" name="username" placeholder="Enter your username">
+      </div>
 
+      <div class="form-group">
+        <label for="password">Password:</label>
+          <input class="form-control" id="password" type="password" name="password" placeholder="Enter a password">
+      </div>
       <p>
-        <input type="submit" value="Create">
+        <input type="submit" class="submit-btn" value="Create">
       </p>
     </form>
   </div>
 
-  <div class="form-section">
+  <div class="col-md-4 homepage-form-section">
     <h2>Log In</h2>
     <form action="/login" method="POST">
-      <p>
-        Email <input type="text" name="email">
-      </p>
 
-      <p>
-        Password <input type="password" name="password">
-      </p>
+      <div class="form-group">
+        <label for="email">Email:</label>
+          <input class="form-control" id="email" type="text" name="email" placeholder="Enter your email">
+      </div>
 
+      <div class="form-group">
+        <label for="password">Password:</label>
+          <input class="form-control" id="password" type="password" name="password" placeholder="Enter your password">
+      </div>
       <p>
-        <input type="submit" value="Log In">
+        <input type="submit" class="submit-btn" value="Log In">
       </p>
     </form>
   </div>

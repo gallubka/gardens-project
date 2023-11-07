@@ -2,7 +2,7 @@
 {% block title %}My Profile{% endblock %}
 
 {% block body %}
-<main class="col-lg-8 mx-auto p-4 py-md-5">
+<main class="col-lg-8 mx-auto">
 
   <h1>My Profile</h1>
 
@@ -24,13 +24,13 @@
       </form>
   </div>
 
-  <div class="row g-5">
-    <div class="col-md-6">
+  <div class="row">
+    <div class="col-md-4 offset-md-2">
       <h2>My Gardens:</h2>
   {% if not user.gardens%}
 
-      <p>your gardens will be displayed here. </p>
-      <p>please create one.</p>
+      <p>Your gardens will be displayed here.</p>
+      <p>Please create one.</p>
 
     {% endif %}
   <ul class="list-unstyled ps-0 ">
@@ -45,13 +45,21 @@
   </div>
 
 
-  <div class="col-md-6">
+  <div class="new-garden col-md-4">
 
     <h2>Create New Garden</h2>
       <form action="/new-garden" method="POST">
-        <p>Title: <input type="text" name="garden_title"></p>
-        <p>Description: <input type="text" name="garden_description"></p>
-        <p><input type="submit" class="submit-btn" value="Create"></p>
+        <div class="form-group">
+          <label for="garden_title">Title:</label>
+            <input class="form-control" id="garden_title" type="text" name="garden_title" placeholder="Enter your garden's name">
+        </div>
+        <div class="form-group">
+          <label for="garden_description">Description:</label>
+            <input class="form-control" id="garden_description" type="text" name="garden_description" placeholder="Describe your garden">
+        </div>
+        <div>
+        <input type="submit" class="submit-btn" value="Create">
+        </div>
       </form>
   </div>
 
@@ -66,11 +74,11 @@
  
 
   <div class="forms">
-    <div class="form-section">
+    <div class="log-out-form-section">
       <h2>Log Out</h2>
       <form action="/logout" method="POST">
         <p>
-          Click here to log out: <input type="submit" value="Log Out">
+          Click here to log out: <input type="submit" class="submit-btn" value="Log Out">
         </p>
   
       </form>

@@ -1,17 +1,16 @@
 
 
 body {
-    background-color: rgb(246, 229, 229);
-
+    background-color: #f8f5e8;
 }
 
 h1 {
     font-family:Georgia, 'Times New Roman', Times, serif;
-    color: #919B3A;
+    color: #e18984;
     font-weight: lighter;
     font-size: 400%;
     text-align: center;
-    margin: 48px;
+    padding: 48px;
 }
 
 p {
@@ -55,7 +54,7 @@ li {
 } */
 
 
-.container {
+.navigation {
     background-color:#919B3A;
     margin:0;
     padding:0;
@@ -63,7 +62,7 @@ li {
     
 }
 
-.container h2 {
+.navigation h2 {
     color: white;
     text-transform: uppercase;
     margin: 16px;
@@ -76,20 +75,23 @@ li {
     color: white;
 }
 
-.container li a{
+.navigation li a{
     color:white;
     text-decoration: none;
 
 
 }
 
-.container a:hover {
+.navigation a:hover {
     text-decoration: underline;
     color:#cc6b9a;
     cursor: pointer;
-
 }
 
+
+.nav {
+    align-items: center;
+}
 .nav-list {
     display: flex;
     flex-direction: row;
@@ -98,20 +100,20 @@ li {
     margin: 0;
 }
 
+
+.homepage-body {
+    background-image: url('background-image-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 800px;
+}
+
 #update_username {
     display : none; 
     color: pink;
 }
 
-.forms {
-    display: flex;
-    justify-content: center;
 
-}
-
-.form-section {
-    margin: 24px;
-}
 
 .change-username {
     font-size: 32px;
@@ -132,7 +134,7 @@ li {
 
 
 .username-section {
-    height: 160px;
+    height: 120px;
 }
 
 
@@ -159,6 +161,108 @@ li {
     width: 300px;
 }
 
-.filter-setion {
+.filter-section {
     display: inline-block;
+}
+
+
+.search-and-filter-background {
+    background-image: url('plants-background-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 800px;
+    --bs-gutter-x: 0;
+}
+.search-and-filter-background h3 {
+    text-align: center;
+    padding-bottom: 16px;
+}
+
+.search-or-filter {
+    background-color:rgb(247, 245, 232, 0.65);
+    margin-right: 40px;
+    padding: 24px;
+    border-radius: 16px;
+    margin-top: 80px;
+}
+
+.center-my-button-pls {
+    display:flex;
+    justify-content: right;
+    padding-top: 16px;
+}
+
+.search-or-filter .submit-btn {
+    background-color:rgb(247, 245, 232);
+}
+
+.new-garden .submit-btn {
+    display: flex;
+    justify-content: right;
+    margin-top: 16px;
+}
+
+.log-out-form-section {
+    margin: 24px;
+}
+
+
+.homepage-forms {
+    display: flex;
+    justify-content: center;
+    padding: 24px;
+
+    margin-top: 80px;
+ 
+
+}
+
+.homepage-form-section {
+    background-color:rgb(247, 245, 232, 0.65);
+    margin-right: 20px;
+    border-radius: 16px;
+    padding: 24px;
+}
+
+
+.homepage-form-section .submit-btn {
+    margin-top: 16px;
+}
+
+.homepage-form-section label {
+    color:#4a2738;
+}
+
+
+.btn-primary{
+    background-color: #6D3952;
+    border-color: #6D3952;
+}
+
+.card a:hover {
+    background-color: #f3a6cb;
+    color:#402230;
+    border-color: #f3a6cb;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 148px;
+    z-index: 10;
+    background-color: white;
+
+}
+
+.card-title {
+    text-align: center;
+    height: 54px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 22vw;
+    object-fit: cover;
+
 }

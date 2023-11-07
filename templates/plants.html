@@ -3,65 +3,92 @@
 
 {% block body %}
 
-<div class="search-and-filter">
-    <h3>search</h3>
+<div class="search-and-filter-background ">
+<div class="row">
+    <div class="col-md-4 offset-md-2 search-or-filter">
+    <h3>Search</h3>
     <form action="/search_plants">
-        <input type="text" name="search_plant">
-        <input type="submit" value="Search!">
-    </form>
-
-    <h3>filter</h3>
-    <form action="/filter">
-        <div class="filter-setion">
-            <h5>Watering</h5>
-            <input type="checkbox" name="frequent" id="frequent">
-            <p>frequent</p>
-            <input type="checkbox" name="average" id="average">
-            <p>average</p>
-            <input type="checkbox" name="minimum" id="minimum">
-            <p>minimum</p>
-            <input type="checkbox" name="none" id="none">
-            <p>none</p>
-        </div>
-        <div class="filter-setion">
-            <h5>Sunlight</h5>
-            <input type="checkbox" name="full_shade" id="full_shade">
-            <p>full shade</p>
-            <input type="checkbox" name="part_shade" id="part_shade">
-            <p>part shade</p>
-            <input type="checkbox" name="sun-part_shade" id="sun-part_shade">
-            <p>sun / part shade</p>
-            <input type="checkbox" name="full_sun" id="full_sun">
-            <p>full sun</p>
-        </div>
-        <div class="filter-setion">
-            <h5>Cycle</h5>
-            <input type="checkbox" name="perennial" id="perennial">
-            <p>perennial</p>
-            <input type="checkbox" name="annual" id="annual">
-            <p>annual</p>
-            <input type="checkbox" name="biennial" id="biennial">
-            <p>biennial</p>
-            <input type="checkbox" name="biannual" id="biannual">
-            <p>biannual</p>
-        </div>
-        <input type="submit" value="filter!">
-    </form>
-
-</div>
-
-<div class="card-columns">
-    <ul class="col">
-        {% for plant in plants %}
-        <li class="card">
-            <img src="{{ plant.thumbnail }}" class="card-img-top" alt="">
-            <div class="card-body" >
-                <h5 class="card-title">{{ plant.name }}</h5>
-                <a class="btn btn-primary" href="/plants/{{ plant.plant_id}}">Visit Plant</a>
+        <div class="row">
+            <div class="col-8 p-0 m-l-1">
+                <input class="form-control" type="text" name="search_plant">
             </div>
-        </li>
-        {% endfor %}
-    </ul>
+            <div class="col-4">
+                <input class="form-control submit-btn"  type="submit" value="Search!">
+            </div>
+        </div>
+    </form>
+    </div>
+
+    <div class="col-md-4  search-or-filter"> 
+    <h3>Filter</h3>
+    <form action="/filter">
+        <div class="filter-section">
+            <h5>Watering</h5>
+            <div class="form-check">
+                <input type="checkbox" name="frequent" id="frequent">
+                <label for="frequent">frequent</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="average" id="average">
+                <label for="average">average</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="minimum" id="minimum">
+                <label for="minimum">minimum</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="none" id="none">
+                <label for="none">none</label>
+            </div>
+        </div>
+        <div class="filter-section">
+            <h5>Sunlight</h5>
+            <div class="form-check">
+                <input type="checkbox" name="full_shade" id="full_shade">
+                <label for="full_shade">full shade</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="part_shade" id="part_shade">
+                <label for="part_shade">part shade</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="sun-part_shade" id="sun-part_shade">
+                <label for="sun-part_shade">sun/part shade</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="full_sun" id="full_sun">
+                <label for="full_sun">full sun</label>
+            </div>
+        </div>
+        <div class="filter-section">
+            <h5>Cycle</h5>
+            <div class="form-check">
+                <input type="checkbox" name="perennial" id="perennial">
+                <label for="perennial">perennial</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="annual" id="annual">
+                <label for="annual">annual</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="biennial" id="biennial">
+                <label for="biennial">biennial</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="biannual" id="biannual">
+                <label for="biannual">biannual</label>
+            </div>
+        </div>
+        <div class="center-my-button-pls">
+            <input type="submit" class="submit-btn" value="Filter!">
+        </div>
+        
+    </form>
+    </div>
 </div>
+
+</div>
+
+
 
 {% endblock body%}

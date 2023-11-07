@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block garden %}{{ garden.title }} - Details{% endblock %}
+{% block title %}{{ garden.title }} - Details{% endblock %}
 
 {% block body %}
 <h1>{{ garden.title }}</h1>
 <p>{{ garden.description}}</p>
 
-<p>Creator: {{ garden.creator.email }}</p>
+<p>Creator: {{ garden.creator.username }}</p>
 <br>
 <p>
   Plants: 

@@ -18,7 +18,6 @@ app.jinja_env.undefined = StrictUndefined
 def homepage():
     if 'user' not in session:
         session['logged_in'] = False
-    print(f'homepage, THIS IS SESSION LOGGED IN : {session["logged_in"]}')
     return render_template('homepage.html')
 
 @app.route('/users', methods=['POST'])
@@ -49,7 +48,6 @@ def login():
         if password == user.password:
             session['user'] = user.user_id
             session['logged_in'] = True
-            print(f'login, THIS IS SESSION LOGGED IN : {session["logged_in"]}')
             flash('Logged in!')
             return redirect('/profile')
         else: 
@@ -63,7 +61,7 @@ def login():
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
-    flash('Successffully loggedd out.')
+    flash('Successfully logged out.')
     return redirect('/')
     
 
@@ -134,7 +132,7 @@ def create_new_garden():
     db.session.add(crud.create_garden(title, description, session['user']))
     db.session.commit()
 
-    flash('garden successfully created.')
+    flash('Garden successfully created.')
     
     return redirect('/profile')
 
