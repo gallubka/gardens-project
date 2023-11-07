@@ -15,7 +15,7 @@
             <img src="/static/sample_garden_image.jpg" class="card-img-top" alt="">
             {% endif%}
         {% endfor %}
-        <div class="card-body" >
+        <div class="card-body garden-card-body " >
             <h5 class="card-title">{{ garden.title }}</h5>
             <p class="card-text">{{garden.description}}</p>
             <a class="btn btn-primary" href= "/gardens/{{ garden.garden_id}}">Visit Garden</a>

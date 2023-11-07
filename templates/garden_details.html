@@ -4,47 +4,73 @@
 
 {% block body %}
 <h1>{{ garden.title }}</h1>
-<p>{{ garden.description}}</p>
-
-<p>Creator: {{ garden.creator.username }}</p>
-<br>
-<p>
-  Plants: 
-  {% for plant in garden.garden_plants %}
-
-   {{ plant.plant.name }}, 
-   <img src="{{ plant.plant.image }}" alt="">
-  {% endfor %}
-</p>
-
-{% if garden.creator_id == session['user'] %}
-    <p>edit plants</p>
-
-    <form action="/remove-plant-from-garden" method="POST">
-      <select name="remove-plant" id="remove-plant">
-        {% for garden_plant in garden.garden_plants%}
-        <option value={{garden_plant.garden_plant_id}}>{{garden_plant.plant.name}}</option>
-        {% endfor %}
-      </select>
-      <input type="hidden" name="garden_to_remove_from" value='{{garden.garden_id}}'>
-      <input type="submit" value="Remove">
-    
-    </form>
-
-    <br>
+<div class="row garden-information">
+  <div class="col-md-4 offset-md-2 garden-bio">
+    <h2><span class="garden-info-type">Creator:</span> {{ garden.creator.username }}</h2>
+    <h2><span class="garden-info-type">Description:</span> {{ garden.description}}</h2>
+  </div>
 
 
-    <form action="/remove-garden" method="POST">
-      <label for="remove-garden">Delete Garden?</label>
-      <br>
-      <input type="checkbox" name="remove" value="standard" id="remove-garden">
-      <input type="hidden" name="garden_to_remove" value='{{garden.garden_id}}'>
-      <input type="submit" value="Yes, delete garden." >
+  {% if garden.creator_id == session['user'] %}
+    <div class=" col-md-4 garden-edit">
+      <h2>Edit Plants</h2>
+      <div class="pt-4">
+      <p>Which plant do you want to remove?</p>
+      <form action="/remove-plant-from-garden" method="POST">
+        <select name="remove-plant" id="remove-plant">
+          {% for garden_plant in garden.garden_plants%}
+          <option value={{garden_plant.garden_plant_id}}>{{garden_plant.plant.name}}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="garden_to_remove_from" value='{{garden.garden_id}}'>
+        <input type="submit" class="submit-btn" value="Remove">
       
-    </form>
+      </form>
+      </div>
+
+      <div class="pt-4">
+        <form action="/remove-garden" method="POST">
+          <p>Delete Garden?</p>
+          <input type="checkbox" name="remove" value="standard" id="remove-garden">
+          <input type="hidden" name="garden_to_remove" value='{{garden.garden_id}}'>
+          <input type="submit" class="submit-btn" value="Yes, delete garden." >
+          
+        </form>
+      </div>
+    </div>
 
 
 {% endif %}
+
+
+
+</div>
+<div class="garden-deck">
+  <h2 class="p-5">Plants in this garden:</h2>
+
+  <div class="card-deck">
+    <ul class="col">
+      {% for plant in garden.garden_plants %}
+      <li class="card">
+        <div>
+            <img src="{{ plant.plant.image }}" class="card-img-top" alt="">
+        </div>  
+        <div class="card-body">
+          <h5 class="card-title">{{ plant.plant.name }}</h5>
+      </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 {% endblock %}
 

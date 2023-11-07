@@ -3,30 +3,31 @@
 {% block title %}{{ plant.name }} - Details{% endblock %}
 
 {% block body %}
-<h1>{{ plant.name }}</h1>
+<div class="plant-detail-page row m-4">
+    <div class="plant-detail-image col-8">
+      <img src="{{ plant.image }}" alt="picture of plant">
+    </div>
+    <div class="plant-details col-4">
+      <h1>{{ plant.name }}</h1>
+      <p>Cycle: {{ plant.plant_type }}</p>
+      <p>Watering: {{ plant.watering }}</p>
+      <p>Light preference: {{ plant.light_preference }}</p>
+   
 
-<p>
-  Cycle: {{ plant.plant_type }}
-  <br>
-  Watering: {{ plant.watering }}
-  <br>
-  Light preference: {{ plant.light_preference }}
-  <br>
-  <img src="{{ plant.image }}" alt="picture of plant">
+      <h2 class="mt-5">Add to a Garden</h2>
+      <form action="/add-plant-to-garden" class="add-to-garden-form" method="POST">
+        <select name="which-garden" id="which-garden">
+          {% for garden in gardens%}
+          <option value={{garden.garden_id}}>{{garden.title}}</option>
+          {% endfor %}
+        </select>
+        <input type="hidden" name="plant_id" value='{{plant.plant_id}}'>
+        <input type="submit" class="submit-btn" value="Add">
 
-</p>
+    </div>
 
-<h2>Add to a Garden</h2>
-<form action="/add-plant-to-garden" method="POST">
-  <select name="which-garden" id="which-garden">
-    {% for garden in gardens%}
-    <option value={{garden.garden_id}}>{{garden.title}}</option>
-    {% endfor %}
-  </select>
-  <input type="hidden" name="plant_id" value='{{plant.plant_id}}'>
-  <input type="submit" value="Add">
-
-</form>
+  </form>
+</div>
 
 
 {% endblock %}
