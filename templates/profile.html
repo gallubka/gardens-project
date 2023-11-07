@@ -27,7 +27,12 @@
   <div class="row g-5">
     <div class="col-md-6">
       <h2>My Gardens:</h2>
+  {% if not user.gardens%}
 
+      <p>your gardens will be displayed here. </p>
+      <p>please create one.</p>
+
+    {% endif %}
   <ul class="list-unstyled ps-0 ">
       {% for garden in user.gardens %}
       <li>
@@ -57,5 +62,19 @@
     
 
   </main>
+
+ 
+
+  <div class="forms">
+    <div class="form-section">
+      <h2>Log Out</h2>
+      <form action="/logout" method="POST">
+        <p>
+          Click here to log out: <input type="submit" value="Log Out">
+        </p>
+  
+      </form>
+    </div>
+  </div>
 
 {% endblock body%}

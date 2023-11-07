@@ -13,6 +13,7 @@
   {% for plant in garden.garden_plants %}
 
    {{ plant.plant.name }}, 
+   <img src="{{ plant.plant.image }}" alt="">
   {% endfor %}
 </p>
 

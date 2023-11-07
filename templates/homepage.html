@@ -2,9 +2,10 @@
 {% block title %}Gardens Home{% endblock %}
 
 {% block body %}
+<div class="homepage-body">
 
 
-    <h1>Welcome to gardening app!</h1>
+    <h1>Welcome to gardening planner!</h1>
 
 
     {% if 'user' not in session %}
@@ -47,20 +48,9 @@
     </form>
   </div>
 </div>
-  
-  {% else %}
-
-<div class="forms">
-  <div class="form-section">
-    <h2>Log Out</h2>
-    <form action="/logout" method="POST">
-      <p>
-        Click here to log out: <input type="submit" value="Log Out">
-      </p>
-
-    </form>
-  </div>
 </div>
+  
+
 
 
 

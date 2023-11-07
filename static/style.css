@@ -39,7 +39,7 @@ li {
     margin: 0;
 }
 
-.navigation {
+/* .navigation {
     display: flex;
     position: static;
     flex-direction: row;
@@ -47,11 +47,47 @@ li {
     font-weight: 600;
     text-transform: uppercase;
     justify-content: space-between;
-}
+} */
 
-.navigation h2 {
+/* .navigation h2 {
     color:#132a13;
     margin: 16px;
+} */
+
+
+.container {
+    background-color:#919B3A;
+    margin:0;
+    padding:0;
+    font-weight: 400;
+    
+}
+
+.container h2 {
+    color: white;
+    text-transform: uppercase;
+    margin: 16px;
+    padding:0;
+}
+
+
+
+.bi {
+    color: white;
+}
+
+.container li a{
+    color:white;
+    text-decoration: none;
+
+
+}
+
+.container a:hover {
+    text-decoration: underline;
+    color:#cc6b9a;
+    cursor: pointer;
+
 }
 
 .nav-list {
@@ -60,24 +96,6 @@ li {
     align-items: center;
     list-style-type: none;
     margin: 0;
-}
-
-.nav-list li {
-    margin: 16px;
-
-}
-
-.nav-list li a {
-    color:#6D3952;
-    text-decoration: none;
-    
-}
-
-.nav-list a:hover {
-    text-decoration: underline;
-    color:#995073;
-    cursor: pointer;
-
 }
 
 #update_username {
@@ -141,3 +159,6 @@ li {
     width: 300px;
 }
 
+.filter-setion {
+    display: inline-block;
+}

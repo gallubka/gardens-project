@@ -51,7 +51,7 @@ def login():
             session['logged_in'] = True
             print(f'login, THIS IS SESSION LOGGED IN : {session["logged_in"]}')
             flash('Logged in!')
-            return redirect('/')
+            return redirect('/profile')
         else: 
             flash('Wrong password. Please try again.')
             return redirect('/')
@@ -196,6 +196,74 @@ def search_plants():
     list_our_plants = list(set_plants)
     
     return render_template('search-results.html', our_plants=list_our_plants)
+
+
+@app.route('/filter', methods=['GET'])
+def filter_plants():
+    base_url = 'https://perenual.com/api/species-list?key=sk-HbCe6538426d9ecb42677'
+    search_param = ''
+
+    #watering
+    if request.form.get("frequent") == True:
+        search_param = search_param + '&watering=frequent'
+    elif request.form.get("average") == True:
+        search_param = search_param + '&watering=average'
+    elif request.form.get("minimum") == True:
+        search_param = search_param + '&watering=minimum'
+    elif request.form.get("none") == True:
+        search_param = search_param + '&sunlight=none'
+    #sunlight
+    elif request.form.get("full_shade") == True:
+        search_param = search_param + '&sunlight=full_shade'
+    elif request.form.get("part_shade") == True:
+        search_param = search_param + '&sunlight=part_shade'
+    elif request.form.get("sun-part_shade") == True:
+        search_param = search_param + '&sunlight=sun-part_shade'
+    elif request.form.get("full_sun") == True:
+        search_param = search_param + '&sunlight=full_sun'
+    #cycle
+    elif request.form.get("perennial") == True:
+        search_param = search_param + '&cycle=perennial'
+    elif request.form.get("annual") == True:
+        search_param = search_param + '&cycle=annual'
+    elif request.form.get("biennial") == True:
+        search_param = search_param + '&cycle=biennial'
+    elif request.form.get("biannual") == True:
+        search_param = search_param + '&cycle=biannual'
+
+    response = requests.get(base_url + f'{search_param}')
+    plants_result = response.json()
+    
+    our_plants = []
+
+    for plant in plants_result['data']:
+        plant_in_database =  crud.get_plant_by_name(plant['common_name'])
+        if plant_in_database is not None:
+            our_plants.append(plant_in_database)
+        else:
+            plant_name = plant['common_name']
+            watering = plant['watering']
+            sunlight = plant['sunlight'][0]
+            cycle = plant['cycle']
+
+            if plant['default_image']:
+                image = plant['default_image'].get('original_url', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+                thumbnail = plant['default_image'].get('thumbnail', 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png')
+            else:
+                image = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
+                thumbnail = 'https://easydrawingguides.com/wp-content/uploads/2020/11/Potted-Plant-Step-10.png'
+            new_plant = crud.create_plant(plant_name, watering, sunlight, image, thumbnail, cycle)
+            db.session.add(new_plant)
+            db.session.commit()
+            our_plants.append(new_plant)
+
+    set_plants = set(our_plants)
+    list_our_plants = list(set_plants)
+    
+    return render_template('search-results.html', our_plants=list_our_plants)
+
+    
+
 
 
 @app.route('/change_username', methods=['POST'])

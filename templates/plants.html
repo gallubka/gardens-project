@@ -3,20 +3,49 @@
 
 {% block body %}
 
-<div>
-    <h1>search</h1>
+<div class="search-and-filter">
+    <h3>search</h3>
     <form action="/search_plants">
         <input type="text" name="search_plant">
         <input type="submit" value="Search!">
     </form>
 
-    <h1>filter</h1>
+    <h3>filter</h3>
     <form action="/filter">
-        <p>Watering</p>
-        <p>Sunlight</p>
-        <p>Cycle</p>
-        <p></p>
-
+        <div class="filter-setion">
+            <h5>Watering</h5>
+            <input type="checkbox" name="frequent" id="frequent">
+            <p>frequent</p>
+            <input type="checkbox" name="average" id="average">
+            <p>average</p>
+            <input type="checkbox" name="minimum" id="minimum">
+            <p>minimum</p>
+            <input type="checkbox" name="none" id="none">
+            <p>none</p>
+        </div>
+        <div class="filter-setion">
+            <h5>Sunlight</h5>
+            <input type="checkbox" name="full_shade" id="full_shade">
+            <p>full shade</p>
+            <input type="checkbox" name="part_shade" id="part_shade">
+            <p>part shade</p>
+            <input type="checkbox" name="sun-part_shade" id="sun-part_shade">
+            <p>sun / part shade</p>
+            <input type="checkbox" name="full_sun" id="full_sun">
+            <p>full sun</p>
+        </div>
+        <div class="filter-setion">
+            <h5>Cycle</h5>
+            <input type="checkbox" name="perennial" id="perennial">
+            <p>perennial</p>
+            <input type="checkbox" name="annual" id="annual">
+            <p>annual</p>
+            <input type="checkbox" name="biennial" id="biennial">
+            <p>biennial</p>
+            <input type="checkbox" name="biannual" id="biannual">
+            <p>biannual</p>
+        </div>
+        <input type="submit" value="filter!">
     </form>
 
 </div>
