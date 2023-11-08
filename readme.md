@@ -1,4 +1,4 @@
-#Garden Planner
+# Garden Planner
 
 Garden Planner is an online tool that helps users design and keep track of gardens. Users are able to pick from over 10,000 plant species and add them to their gardens. 
 
